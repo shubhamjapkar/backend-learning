@@ -2,7 +2,8 @@ const express = require("express");
 const apiRoutes = require("./routes");
 const notFoundHandler = require("./middleware/notFoundHandler");
 const errorHandler = require("./middleware/errorHandler");
-const db = require("./db/db")
+const db = require("./db/db");
+const webSocket = require("./webSocket");
 
 require("dotenv").config();
 
@@ -11,17 +12,18 @@ db();
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-
 app.use(express.json());
 app.use("/api", apiRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
 
+const { server, io } = webSocket(app);
+
 if (require.main === module) {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server is listening on :${PORT}`);
   });
 }
 
-module.exports = app;
+module.exports = { app, io };

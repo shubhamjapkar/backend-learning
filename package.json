@@ -1,0 +1,22 @@
+{
+  "name": "learning-backend",
+  "version": "1.0.0",
+  "description": "Backend architecture with CRUD and random API endpoints",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"No tests configured\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cat-me": "^1.0.3",
+    "dotenv": "^17.4.0",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
